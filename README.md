@@ -5,8 +5,8 @@ Flutter login template using Firebase.
 [!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom-images/orange_img.png)](https://www.buymeacoffee.com/mchigangawa)
 
 
-#Preview
-![Pic](assets/images/flutter x firebase.png)
+# Preview
+![Pic](banner/pic.png)
 
 # Credits
 
