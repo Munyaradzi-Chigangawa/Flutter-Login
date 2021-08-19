@@ -17,7 +17,7 @@ Flutter login template using Firebase.
 # Developed By
 
 * Munyaradzi Chigangawa 
- * [Portfolio Site](http://www.munyaradzichigangawa-6e6a3.web.app)
+ * [Portfolio Site](https://munyaradzichigangawa-6e6a3.web.app/#/)
  * [Instagram](https://www.instagram.com/munyaradzichigangawa/)
  * [Twitter](https://twitter.com/mchigangawa)
 
