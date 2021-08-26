@@ -12,7 +12,6 @@ Flutter login template using Firebase.
 # Credits
 
 * [Firebase Auth](https://pub.dev/packages/firebase_auth)
-* [Modal Progress HUD](https://pub.dev/packages/modal_progress_hud)
 
 # Developed By
 
