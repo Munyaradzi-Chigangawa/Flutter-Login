@@ -3,8 +3,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_login/screens/home.dart';
 import 'package:flutter_login/screens/register.dart';
-// ignore: import_of_legacy_library_into_null_safe
-import 'package:modal_progress_hud/modal_progress_hud.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -12,16 +10,14 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  bool showSpinner = false;
+  bool isLoading = false;
   final _auth = FirebaseAuth.instance;
   late String email;
   late String password;
 
   @override
   Widget build(BuildContext context) {
-    return ModalProgressHUD(
-      inAsyncCall: showSpinner,
-        child: Scaffold(
+    return Scaffold(
           appBar: AppBar(backgroundColor: Colors.transparent,
           elevation: 0,),
           body: SingleChildScrollView(
@@ -139,7 +135,8 @@ class _LoginState extends State<Login> {
                 Padding(
                   padding:
                       const EdgeInsets.only(left: 20, right: 20, bottom: 0),
-                  child: Container(
+                  child: isLoading ? Center(child: CircularProgressIndicator()) : 
+                  Container(
                     height: 45,
                     child: TextButton(
                       style: ButtonStyle(
@@ -148,7 +145,7 @@ class _LoginState extends State<Login> {
                       onPressed: () async {
                         // Add login code
                         setState(() {
-                          showSpinner = true;
+                         isLoading = true;
                         });
                         try {
                           final user = await _auth.signInWithEmailAndPassword(
@@ -161,7 +158,7 @@ class _LoginState extends State<Login> {
                                     builder: (context) => Home()));
                           }
                           setState(() {
-                            showSpinner = false;
+                            
                           });
                         } catch (e) {
                           print(e);
@@ -197,8 +194,7 @@ class _LoginState extends State<Login> {
                           color: Colors.grey[600], fontWeight: FontWeight.w400),
                     ),
 
-                    // ignore: deprecated_member_use
-                    FlatButton(
+                    TextButton(
                       onPressed: () {
                         Navigator.push(
                             context,
@@ -215,7 +211,6 @@ class _LoginState extends State<Login> {
               ],
             ),
           ),
-        ),
     );
   }
 
