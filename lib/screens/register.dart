@@ -1,8 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-// ignore: import_of_legacy_library_into_null_safe
-import 'package:modal_progress_hud/modal_progress_hud.dart';
-
 import 'home.dart';
 import 'login.dart';
 
@@ -14,16 +11,14 @@ class Register extends StatefulWidget {
 }
 
 class _RegisterState extends State<Register> {
-   bool showSpinner = false;
+   bool isLoading = false;
   final _auth = FirebaseAuth.instance;
   late String email;
   late String password;
 
   @override
   Widget build(BuildContext context) {
-    return ModalProgressHUD(
-      inAsyncCall: showSpinner,
-      child: Scaffold(
+    return Scaffold(
         appBar: AppBar(
           elevation: 0,
             leading: _goBackButton(context),
@@ -144,7 +139,8 @@ class _RegisterState extends State<Register> {
                 Padding(
                   padding:
                       const EdgeInsets.only(left: 20, right: 20, bottom: 0),
-                  child: Container(
+                  child: isLoading ? Center(child: CircularProgressIndicator()) :
+                  Container(
                     height: 45,
                     child: TextButton(
                       style: ButtonStyle(
@@ -153,7 +149,7 @@ class _RegisterState extends State<Register> {
                       onPressed: () async {
                         // Add login code
                         setState(() {
-                          showSpinner = true;
+                          isLoading = true;
                         });
                         try {
                         final newUser =
@@ -167,7 +163,7 @@ class _RegisterState extends State<Register> {
                                   builder: (context) => Home()));
                         }
                           setState(() {
-                            showSpinner = false;
+                        
                           });
                         } catch (e) {
                           print(e);
@@ -196,8 +192,7 @@ class _RegisterState extends State<Register> {
                           color: Colors.grey[600], fontWeight: FontWeight.w400),
                     ),
 
-                    // ignore: deprecated_member_use
-                    FlatButton(
+                    TextButton(
                       onPressed: () {
                         Navigator.push(
                             context,
@@ -214,8 +209,7 @@ class _RegisterState extends State<Register> {
               ],
             ),
           ),
-      ),
-    );
+      );
   }
 }
 
